@@ -19,7 +19,8 @@ class text():
         else:
             self.font = pg.font.SysFont('Arial', fontSize, bold, italic)
 
-        self.text = self.font.render(text, antialias, color, bgColor)
+        self.norm = self.font.render(text, antialias, color, bgColor)
+        self.text = self.norm
         self.rect = self.text.get_rect(center = pos)
         self.wn = window
 
@@ -27,21 +28,24 @@ class text():
         mousePos = pg.mouse.get_pos()
 
         if self.rect.collidepoint(mousePos):
-            return effect
+            self.text = effect()
         else:
-            pass
+            self.text = self.norm
     
     @hover
-    def brighten(self):
-        self.text.fill((169, 169, 169), special_flags = pg.BLEND_RGB_ADD)
+    def brighten(self, brightness: tuple | str | None = '#A9A9A9'):
+        new = self.text.fill(brightness, special_flags = pg.BLEND_RGB_ADD)
+        return new
 
     @hover
-    def darken(self):
-        self.text.fill((169, 169, 169), special_flags = pg.BLEND_RGB_SUB)
+    def darken(self, darkness: tuple | str | None = '#A9A9A9'):
+        new = self.text.fill(darkness, special_flags = pg.BLEND_RGB_SUB)
+        return new
 
     @hover
     def scale(self):
-        self.text = pg.transform.scale(self.text, (self.text.get_width() * 1.5, self.text.get_height() * 1.5))
+        new = self.text = pg.transform.scale(self.text, (self.text.get_width() * 1.5, self.text.get_height() * 1.5))
+        return new
 
     def draw(self):
         self.wn.blit(self.text, self.rect)
