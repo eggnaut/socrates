@@ -67,3 +67,6 @@ class text():
 
     def draw(self):
         self.wn.blit(self.text, self.rect)
+    
+    def update(self):
+        pass
