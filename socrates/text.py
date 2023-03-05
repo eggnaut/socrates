@@ -33,15 +33,15 @@ class text():
     
     @hover
     def brighten(self):
-        pass
+        self.text.fill((169, 169, 169), special_flags = pg.BLEND_RGB_ADD)
 
     @hover
     def darken(self):
-        pass
+        self.text.fill((169, 169, 169), special_flags = pg.BLEND_RGB_SUB)
 
     @hover
     def scale(self):
-        pass
+        self.text = pg.transform.scale(self.text, (self.text.get_width() * 1.5, self.text.get_height() * 1.5))
 
     def draw(self):
         self.wn.blit(self.text, self.rect)
