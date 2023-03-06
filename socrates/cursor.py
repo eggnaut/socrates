@@ -18,3 +18,21 @@
 
 import pygame as pg
 pg.init()
+
+class cursor():
+    def __init__(self,
+                 window: pg.Surface,
+                 image: str,
+                 scale: float | int | None = 1
+                 ):
+        
+        self.wn = window
+        self.image = pg.image.load(image).convert_alpha()
+        self.image = pg.transform.scale(self.image, (self.image.get_width() * scale, self.image.get_height() * scale))
+        self.rect = self.image.get_rect(center = pg.mouse.get_pos())
+
+    def draw(self):
+        self.wn.blit(self.image, self.rect)
+
+    def update(self):
+        self.rect.center = pg.mouse.get_pos()
