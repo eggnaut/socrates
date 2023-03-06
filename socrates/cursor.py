@@ -25,7 +25,6 @@ class cursor():
                  image: str,
                  scale: float | int | None = 1
                  ):
-        
         self.wn = window
         self.image = pg.image.load(image).convert_alpha()
         self.image = pg.transform.scale(self.image, (self.image.get_width() * scale, self.image.get_height() * scale))
