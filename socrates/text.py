@@ -42,6 +42,21 @@ class text():
         self.rect = self.text.get_rect(center = pos)
         self.wn = window
 
+    def hover(self, effect) -> None:
+        mousePos = pg.mouse.get_pos()
+
+        if self.rect.collidepoint(mousePos):
+            if effect == 'brighten':
+                pass
+            elif effect == 'darken':
+                pass
+            elif effect == 'scale':
+                self.text = pg.transform.scale(self.norm, (self.norm.get_width() * 1.5, self.norm.get_height() * 1.5))
+            else:
+                raise ValueError(f'text.text.hover() {effect} is not a valid argument. Please choose one of \'brighten\', \'darken\', or \'scale\'.')
+        else:
+            self.text = self.norm
+
     def draw(self) -> None:
         self.wn.blit(self.text, self.rect)
     
