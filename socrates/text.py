@@ -37,25 +37,22 @@ class text():
         else:
             self.font = pg.font.SysFont('Arial', fontSize, bold, italic)
 
+        self.pos = pos
         self.norm = self.font.render(text, antialias, color, bgColor)
         self.text = self.norm
-        self.rect = self.text.get_rect(center = pos)
+        self.rect = self.text.get_rect(center = self.pos)
         self.wn = window
 
-    def hover(self, effect) -> None:
+    def hover(self, scale: float | int | None = 1.25) -> None:
         mousePos = pg.mouse.get_pos()
 
         if self.rect.collidepoint(mousePos):
-            if effect == 'brighten':
-                pass
-            elif effect == 'darken':
-                pass
-            elif effect == 'scale':
-                self.text = pg.transform.scale(self.norm, (self.norm.get_width() * 1.5, self.norm.get_height() * 1.5))
-            else:
-                raise ValueError(f'text.text.hover() {effect} is not a valid argument. Please choose one of \'brighten\', \'darken\', or \'scale\'.')
+            new = pg.transform.scale(self.norm, (self.norm.get_width() * scale, self.norm.get_height() * scale))
+            self.text = new
+            self.rect = self.text.get_rect(center = self.pos)
         else:
             self.text = self.norm
+            self.rect = self.text.get_rect(center = self.pos)
 
     def draw(self) -> None:
         self.wn.blit(self.text, self.rect)
