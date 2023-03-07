@@ -34,21 +34,25 @@ class window():
         self.bgColor = bgColor
         self.clock = pg.time.Clock()
         self.fps = fps
+        self.wn = pg.display.set_mode(self.size)
 
-        return pg.display.set_mode(self.size)
+        return self.wn
     
     def setName(self, name: str | int | float | bytes | None = 'socrates GUI App'):
-        pg.display.set_caption(str(name))
+        self.name = name
+        pg.display.set_caption(str(self.name))
     
     def setIcon(self, icon: str | None = None):
-        img = pg.image.load(icon).convert_alpha()
-        pg.display.set_icon(img)
+        self.icon = icon
+        self.img = pg.image.load(self.icon).convert_alpha()
+        pg.display.set_icon(self.img)
 
     def setBg(self, bgColor: tuple | str | None = '#000000'):
-        self.wn.fill(bgColor)
+        self.bgColor = bgColor
+        self.wn.fill(self.bgColor)
 
     def draw(self):
-        pass
+        self.wn.fill(self.bgColor)
 
     def update(self):
         pg.display.update()
