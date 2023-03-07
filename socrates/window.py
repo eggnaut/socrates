@@ -50,6 +50,9 @@ class window():
     def setBg(self, bgColor: tuple | str | None = '#000000'):
         self.bgColor = bgColor
         self.wn.fill(self.bgColor)
+    
+    def setFps(self, fps: int | None = 60):
+        self.fps = fps
 
     def draw(self):
         self.wn.fill(self.bgColor)
