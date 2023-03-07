@@ -31,8 +31,7 @@ class cursor():
         self.rect = self.image.get_rect(center = pg.mouse.get_pos())
 
     def draw(self):
-        self.rect.center = pg.mouse.get_pos()
         self.wn.blit(self.image, self.rect)
 
     def update(self):
-        pass
+        self.rect.center = pg.mouse.get_pos()

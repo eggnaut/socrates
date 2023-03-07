@@ -18,3 +18,4 @@
 
 from . import text
 from . import cursor
+from . import window
