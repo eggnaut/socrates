@@ -21,7 +21,7 @@ pg.init()
 
 class window():
     def __init__(self,
-                 name: str | int | float | bytes | None = 'socrates',
+                 name: str | int | float | bytes | None = 'socrates GUI app',
                  icon: str | None = None,
                  size: tuple | None = (100, 100),
                  bgColor: tuple | str | None = '#000000',
@@ -37,7 +37,7 @@ class window():
 
         return pg.display.set_mode(self.size)
     
-    def setName(self, name: str | int | float | bytes | None = 'socrates'):
+    def setName(self, name: str | int | float | bytes | None = 'socrates GUI App'):
         pg.display.set_caption(str(name))
     
     def setIcon(self, icon: str | None = None):
