@@ -16,6 +16,9 @@
 #    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 #    USA
 
+from os import environ
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
+
 import pygame as pg
 pg.init()
 
