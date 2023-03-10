@@ -1,4 +1,4 @@
-#    Under construction!
+#    A GUI framework for Python built on-top of the Pygame library.
 #    Copyright (C) 2023  Dishant B. (eggnaut)
 #
 #    This library is free software; you can redistribute it and/or
