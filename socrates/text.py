@@ -34,7 +34,7 @@ class text():
                  color: tuple | str | None = '#000000',
                  bgColor: tuple | str | None = '#FFFFFF',
                  pos: tuple | None = (0, 0)
-                 ) -> None:
+                 ) -> pg.Surface:
         if font:
             self.font = pg.font.Font(font, fontSize)
         else:
@@ -45,6 +45,8 @@ class text():
         self.text = self.norm
         self.rect = self.text.get_rect(center = self.pos)
         self.wn = window
+
+        return self
 
     def hover(self, scale: float | int | None = 1.25) -> None:
         mousePos = pg.mouse.get_pos()

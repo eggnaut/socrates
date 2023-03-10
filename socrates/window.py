@@ -29,7 +29,7 @@ class window():
                  size: tuple | None = (100, 100),
                  bgColor: tuple | str | None = '#000000',
                  fps: int | None = 60
-                 ):
+                 ) -> pg.Surface:
         self.name = name
         self.icon = icon
         self.img = pg.image.load(self.icon).convert_alpha()
@@ -41,25 +41,25 @@ class window():
 
         return self.wn
     
-    def setName(self, name: str | int | float | bytes | None = 'socrates GUI App'):
+    def setName(self, name: str | int | float | bytes | None = 'socrates GUI App') -> None:
         self.name = name
         pg.display.set_caption(str(self.name))
     
-    def setIcon(self, icon: str | None = None):
+    def setIcon(self, icon: str | None = None) -> None:
         self.icon = icon
         self.img = pg.image.load(self.icon).convert_alpha()
         pg.display.set_icon(self.img)
 
-    def setBg(self, bgColor: tuple | str | None = '#000000'):
+    def setBg(self, bgColor: tuple | str | None = '#000000') -> None:
         self.bgColor = bgColor
         self.wn.fill(self.bgColor)
     
-    def setFps(self, fps: int | None = 60):
+    def setFps(self, fps: int | None = 60) -> None:
         self.fps = fps
 
-    def draw(self):
+    def draw(self) -> None:
         self.wn.fill(self.bgColor)
 
-    def update(self):
+    def update(self) -> None:
         pg.display.update()
         self.clock.tick(self.fps)
