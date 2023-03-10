@@ -1,7 +1,7 @@
 <div align = 'center'>
 <img width = '400' height = '400' src = './logo.png'> </img>
 <h1> socrates </h1>
-Under construction!
+A GUI framework for Python built on-top of the Pygame library.
 </div>
 
 ## Socials:
