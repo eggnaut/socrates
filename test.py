@@ -21,6 +21,7 @@ import socrates as sc
 window = sc.window.createWindow(size = (600, 600))
 cursor = sc.cursor.createCursor(window.wn, './docs/logo.png', 0.0625)
 text = sc.text.text(window.wn, 'socrates', pos = (300, 300))
+txt = sc.text.text(window.wn, 'eggnaut', pos = (300, 200))
 
 while True:
     window.update()
@@ -31,3 +32,6 @@ while True:
 
     text.update()
     text.draw()
+
+    txt.draw()
+    txt.update()
