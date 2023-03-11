@@ -32,7 +32,7 @@ def createText(window: pg.Surface,
                  color: tuple | str | None = '#000000',
                  bgColor: tuple | str | None = '#FFFFFF',
                  pos: tuple | None = (0, 0)
-                 ) -> pg.Surface:
+                 ):
     return text(window, content, font, fontSize, bold, italic, antialias, color, bgColor, pos)
 
 class text():

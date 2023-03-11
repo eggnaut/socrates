@@ -27,7 +27,7 @@ def createWindow(name: str | int | float | bytes | None = 'socrates GUI App',
                  size: tuple | None = (100, 100),
                  bgColor: tuple | str | None = '#000000',
                  fps: int | None = None
-                 ) -> pg.Surface:
+                 ):
     return window(name, icon, size, bgColor, fps)
 
 class window():
