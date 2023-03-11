@@ -38,6 +38,7 @@ class cursor():
         self.image = pg.image.load(image).convert_alpha()
         self.image = pg.transform.scale(self.image, (self.image.get_width() * scale, self.image.get_height() * scale))
         self.rect = self.image.get_rect(center = pg.mouse.get_pos())
+        pg.mouse.set_visible()
 
     def draw(self) -> None:
         self.wn.blit(self.image, self.rect)

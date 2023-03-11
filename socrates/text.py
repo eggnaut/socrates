@@ -24,7 +24,7 @@ pg.init()
 
 def createText(window: pg.Surface,
                  content: str | bytes,
-                 font: str | None = 'Arial',
+                 font: str | None = None,
                  fontSize: int | None = 20,
                  bold: bool | None = False, 
                  italic: bool | None = False,
@@ -39,7 +39,7 @@ class text():
     def __init__(self, 
                  window: pg.Surface,
                  content: str | bytes,
-                 font: str | None = 'Arial',
+                 font: str | None = None,
                  fontSize: int | None = 20,
                  bold: bool | None = False, 
                  italic: bool | None = False,
@@ -48,7 +48,7 @@ class text():
                  bgColor: tuple | str | None = '#FFFFFF',
                  pos: tuple | None = (0, 0)
                  ) -> None:
-        if font:
+        if font != None:
             self.font = pg.font.Font(font, fontSize)
         else:
             self.font = pg.font.SysFont('Arial', fontSize, bold, italic)

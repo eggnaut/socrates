@@ -16,6 +16,7 @@
 #    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 #    USA
 
+from sys import exit
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
 
@@ -77,3 +78,10 @@ class window():
         pg.display.update()
         if self.fps != None:
             self.clock.tick(self.fps)
+        else:
+            self.clock.tick()
+        
+        for ev in pg.event.get():
+            if ev.type == pg.QUIT:
+                pg.quit()
+                exit()
