@@ -22,44 +22,58 @@ environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
 import pygame as pg
 pg.init()
 
+def createWindow(name: str | int | float | bytes | None = 'socrates GUI App',
+                 icon: str | None = None,
+                 size: tuple | None = (100, 100),
+                 bgColor: tuple | str | None = '#000000',
+                 fps: int | None = None
+                 ) -> pg.Surface:
+    return window(name, icon, size, bgColor, fps)
+
 class window():
     def __init__(self,
                  name: str | int | float | bytes | None = 'socrates GUI App',
                  icon: str | None = None,
                  size: tuple | None = (100, 100),
                  bgColor: tuple | str | None = '#000000',
-                 fps: int | None = 60
-                 ) -> pg.Surface:
-        self.name = name
-        self.icon = icon
-        self.img = pg.image.load(self.icon).convert_alpha()
+                 fps: int | None = None
+                 ) -> None:
         self.size = size
         self.bgColor = bgColor
         self.clock = pg.time.Clock()
         self.fps = fps
         self.wn = pg.display.set_mode(self.size)
-
-        return self.wn
+        self.wn.fill(self.bgColor)
+        self.name = name
+        pg.display.set_caption(self.name)
+        if icon != None:
+            self.icon = icon
+            self.img = pg.image.load(self.icon).convert_alpha()
+            pg.display.set_icon(self.img)
     
-    def setName(self, name: str | int | float | bytes | None = 'socrates GUI App') -> None:
+    def setName(self, name: str | int | float | bytes) -> None:
         self.name = name
         pg.display.set_caption(str(self.name))
     
-    def setIcon(self, icon: str | None = None) -> None:
+    def setIcon(self, icon: str) -> None:
         self.icon = icon
         self.img = pg.image.load(self.icon).convert_alpha()
         pg.display.set_icon(self.img)
 
-    def setBg(self, bgColor: tuple | str | None = '#000000') -> None:
+    def setBg(self, bgColor: tuple | str) -> None:
         self.bgColor = bgColor
         self.wn.fill(self.bgColor)
     
-    def setFps(self, fps: int | None = 60) -> None:
+    def setFps(self, fps: int) -> None:
         self.fps = fps
+    
+    def getFps(self) -> int:
+        return self.clock.get_fps()
 
     def draw(self) -> None:
         self.wn.fill(self.bgColor)
 
     def update(self) -> None:
         pg.display.update()
-        self.clock.tick(self.fps)
+        if self.fps != None:
+            self.clock.tick(self.fps)

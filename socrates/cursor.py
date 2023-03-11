@@ -22,18 +22,22 @@ environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
 import pygame as pg
 pg.init()
 
+def createCursor(window: pg.Surface,
+                 image: str,
+                 scale: float | int | None = 1
+                 ):
+    return cursor(window, image, scale)
+
 class cursor():
     def __init__(self,
                  window: pg.Surface,
                  image: str,
                  scale: float | int | None = 1
-                 ) -> pg.Surface:
+                 ) -> None:
         self.wn = window
         self.image = pg.image.load(image).convert_alpha()
         self.image = pg.transform.scale(self.image, (self.image.get_width() * scale, self.image.get_height() * scale))
         self.rect = self.image.get_rect(center = pg.mouse.get_pos())
-
-        return self
 
     def draw(self) -> None:
         self.wn.blit(self.image, self.rect)

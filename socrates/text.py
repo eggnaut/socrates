@@ -22,10 +22,8 @@ environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
 import pygame as pg
 pg.init()
 
-class text():
-    def __init__(self, 
-                 window: pg.Surface,
-                 text: str | bytes,
+def createText(window: pg.Surface,
+                 content: str | bytes,
                  font: str | None = 'Arial',
                  fontSize: int | None = 20,
                  bold: bool | None = False, 
@@ -35,32 +33,45 @@ class text():
                  bgColor: tuple | str | None = '#FFFFFF',
                  pos: tuple | None = (0, 0)
                  ) -> pg.Surface:
+    return text(window, content, font, fontSize, bold, italic, antialias, color, bgColor, pos)
+
+class text():
+    def __init__(self, 
+                 window: pg.Surface,
+                 content: str | bytes,
+                 font: str | None = 'Arial',
+                 fontSize: int | None = 20,
+                 bold: bool | None = False, 
+                 italic: bool | None = False,
+                 antialias: bool | None = True,
+                 color: tuple | str | None = '#000000',
+                 bgColor: tuple | str | None = '#FFFFFF',
+                 pos: tuple | None = (0, 0)
+                 ) -> None:
         if font:
             self.font = pg.font.Font(font, fontSize)
         else:
             self.font = pg.font.SysFont('Arial', fontSize, bold, italic)
 
         self.pos = pos
-        self.norm = self.font.render(text, antialias, color, bgColor)
-        self.text = self.norm
-        self.rect = self.text.get_rect(center = self.pos)
+        self.norm = self.font.render(content, antialias, color, bgColor)
+        self.content = self.norm
+        self.rect = self.content.get_rect(center = self.pos)
         self.wn = window
-
-        return self
 
     def hover(self, scale: float | int | None = 1.25) -> None:
         mousePos = pg.mouse.get_pos()
 
         if self.rect.collidepoint(mousePos):
             new = pg.transform.scale(self.norm, (self.norm.get_width() * scale, self.norm.get_height() * scale))
-            self.text = new
-            self.rect = self.text.get_rect(center = self.pos)
+            self.content = new
+            self.rect = self.content.get_rect(center = self.pos)
         else:
-            self.text = self.norm
-            self.rect = self.text.get_rect(center = self.pos)
+            self.content = self.norm
+            self.rect = self.content.get_rect(center = self.pos)
 
     def draw(self) -> None:
-        self.wn.blit(self.text, self.rect)
+        self.wn.blit(self.content, self.rect)
     
     def update(self) -> None:
         pass
