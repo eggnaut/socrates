@@ -24,21 +24,23 @@ pg.init()
 
 def createCursor(window: pg.Surface,
                  image: str,
-                 scale: float | int | None = 1
+                 scale: float | int | None = 1,
+                 mouseVisible: bool | None = False
                  ):
-    return cursor(window, image, scale)
+    return cursor(window, image, scale, mouseVisible)
 
 class cursor():
     def __init__(self,
                  window: pg.Surface,
                  image: str,
-                 scale: float | int | None = 1
+                 scale: float | int | None = 1,
+                 mouseVisible: bool | None = False
                  ) -> None:
         self.wn = window
         self.image = pg.image.load(image).convert_alpha()
         self.image = pg.transform.scale(self.image, (self.image.get_width() * scale, self.image.get_height() * scale))
         self.rect = self.image.get_rect(center = pg.mouse.get_pos())
-        pg.mouse.set_visible()
+        pg.mouse.set_visible(mouseVisible)
 
     def draw(self) -> None:
         self.wn.blit(self.image, self.rect)
