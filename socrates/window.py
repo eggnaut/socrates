@@ -25,7 +25,7 @@ pg.init()
 
 def createWindow(name: str | int | float | bytes | None = 'socrates GUI App',
                  icon: str | None = None,
-                 size: tuple | None = (100, 100),
+                 size: tuple | None = (600, 600),
                  bgColor: tuple | str | None = '#000000',
                  fps: int | None = None
                  ):
