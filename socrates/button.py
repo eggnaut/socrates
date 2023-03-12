@@ -22,8 +22,12 @@ environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
 import pygame as pg
 pg.init()
 
-def createButton():
-    pass
+def createButton(window: pg.Surface,
+                 image: str,
+                 scale: float | int | None = 1,
+                 pos: tuple | None = (0, 0)
+                 ):
+    return button(window, image, scale, pos)
 
 class button():
     def __init__(self,
