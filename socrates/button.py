@@ -25,21 +25,25 @@ pg.init()
 def createButton(window: pg.Surface,
                  image: str,
                  scale: float | int | None = 1,
-                 pos: tuple | None = (0, 0)
+                 pos: tuple | None = (0, 0),
+                 action = None
                  ):
-    return button(window, image, scale, pos)
+    return button(window, image, scale, pos, action)
 
 class button():
     def __init__(self,
                  window: pg.Surface,
                  image: str,
                  scale: float | int | None = 1,
-                 pos: tuple | None = (0, 0)
+                 pos: tuple | None = (0, 0),
+                 action = None
                  ):
         self.wn = window
         self.pos = pos
+        self.action = action
+        self.doAction = self.action
         self.norm = pg.image.load(image).convert_alpha()
-        self.norm = pg.transform.scale(self.image, (self.image.get_width() * scale, self.image.get_height() * scale))
+        self.norm = pg.transform.scale(self.norm, (self.norm.get_width() * scale, self.norm.get_height() * scale))
         self.image = self.norm
         self.rect = self.image.get_rect(center = self.pos)
     
@@ -54,7 +58,7 @@ class button():
             self.image = self.norm
             self.rect = self.image.get_rect(center = self.pos)
 
-    def action(self):
+    def doAction(self):
         pass
 
     def draw(self) -> None:
@@ -65,5 +69,5 @@ class button():
 
         for ev in pg.event.get():
             if pg.MOUSEBUTTONDOWN:
-                if self.rect.collidepoint(mousePos):
-                    self.action()
+                if self.rect.collidepoint(mousePos) and self.action != None:
+                        self.doAction()

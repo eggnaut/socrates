@@ -23,7 +23,7 @@ import pygame as pg
 pg.init()
 
 def createText(window: pg.Surface,
-                 content: str | bytes,
+                 content: str | bytes | int | float,
                  font: str | None = None,
                  fontSize: int | None = 20,
                  bold: bool | None = False, 
@@ -38,7 +38,7 @@ def createText(window: pg.Surface,
 class text():
     def __init__(self, 
                  window: pg.Surface,
-                 content: str | bytes,
+                 content: str | bytes | int | float,
                  font: str | None = None,
                  fontSize: int | None = 20,
                  bold: bool | None = False, 
