@@ -43,8 +43,8 @@ class _window():
         self.__bgColor = bgColor
         self.__clock = pg.time.Clock()
         self.__fps = fps
-        self.wn = pg.display.set_mode(self.__size)
-        self.wn.fill(self.__bgColor)
+        self.display = pg.display.set_mode(self.__size)
+        self.display.fill(self.__bgColor)
         self.__name = name
         pg.display.set_caption(self.__name)
         if icon != None:
@@ -63,7 +63,7 @@ class _window():
 
     def setBg(self, bgColor: tuple | str) -> None:
         self.__bgColor = bgColor
-        self.wn.fill(self.__bgColor)
+        self.display.fill(self.__bgColor)
     
     def setFps(self, fps: int) -> None:
         self.__fps = fps
@@ -72,7 +72,7 @@ class _window():
         return self.__clock.get_fps()
 
     def draw(self) -> None:
-        self.wn.fill(self.__bgColor)
+        self.display.fill(self.__bgColor)
 
     def update(self) -> None:
         pg.display.update()
