@@ -33,9 +33,9 @@ def createText(window: pg.Surface,
                  bgColor: tuple | str | None = '#FFFFFF',
                  pos: tuple | None = (0, 0)
                  ):
-    return text(window, content, font, fontSize, bold, italic, antialias, color, bgColor, pos)
+    return _text(window, content, font, fontSize, bold, italic, antialias, color, bgColor, pos)
 
-class text():
+class _text():
     def __init__(self, 
                  window: pg.Surface,
                  content: str | bytes | int | float,

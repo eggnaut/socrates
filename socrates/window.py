@@ -29,9 +29,9 @@ def createWindow(name: str | int | float | bytes | None = 'socrates GUI App',
                  bgColor: tuple | str | None = '#000000',
                  fps: int | None = None
                  ):
-    return window(name, icon, size, bgColor, fps)
+    return _window(name, icon, size, bgColor, fps)
 
-class window():
+class _window():
     def __init__(self,
                  name: str | int | float | bytes | None = 'socrates GUI App',
                  icon: str | None = None,

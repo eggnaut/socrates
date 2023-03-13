@@ -27,9 +27,9 @@ def createCursor(window: pg.Surface,
                  scale: float | int | None = 1,
                  mouseVisible: bool | None = False
                  ):
-    return cursor(window, image, scale, mouseVisible)
+    return _cursor(window, image, scale, mouseVisible)
 
-class cursor():
+class _cursor():
     def __init__(self,
                  window: pg.Surface,
                  image: str,
