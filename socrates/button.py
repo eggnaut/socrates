@@ -42,6 +42,7 @@ class _button():
         self.pos = pos
         self.action = action
         self.__doAction = self.action
+        self.click = False
         self.norm = pg.image.load(image).convert_alpha()
         self.norm = pg.transform.scale(self.norm, (self.norm.get_width() * scale, self.norm.get_height() * scale))
         self.image = self.norm
@@ -64,10 +65,9 @@ class _button():
     def draw(self) -> None:
         self.wn.blit(self.image, self.rect)
     
-    def update(self) -> None:
+    def update(self):
         mousePos = pg.mouse.get_pos()
 
-        for ev in pg.event.get():
-            if ev.type == pg.MOUSEBUTTONDOWN:
-                if self.rect.collidepoint(mousePos) and self.action != None:
-                        self.__doAction()
+        if pg.mouse.get_pressed()[0] and self.rect.collidepoint(mousePos) and not self.click:
+            self.__doAction()
+            self.click = pg.mouse.get_pressed()[0]
