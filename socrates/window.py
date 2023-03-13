@@ -39,47 +39,47 @@ class _window():
                  bgColor: tuple | str | None = '#000000',
                  fps: int | None = None
                  ) -> None:
-        self.size = size
-        self.bgColor = bgColor
-        self.clock = pg.time.Clock()
-        self.fps = fps
-        self.wn = pg.display.set_mode(self.size)
-        self.wn.fill(self.bgColor)
-        self.name = name
-        pg.display.set_caption(self.name)
+        self.__size = size
+        self.__bgColor = bgColor
+        self.__clock = pg.time.Clock()
+        self.__fps = fps
+        self.wn = pg.display.set_mode(self.__size)
+        self.wn.fill(self.__bgColor)
+        self.__name = name
+        pg.display.set_caption(self.__name)
         if icon != None:
-            self.icon = icon
-            self.img = pg.image.load(self.icon).convert_alpha()
-            pg.display.set_icon(self.img)
+            self.__icon = icon
+            self.__img = pg.image.load(self.__icon).convert_alpha()
+            pg.display.set_icon(self.__img)
     
     def setName(self, name: str | int | float | bytes) -> None:
-        self.name = name
-        pg.display.set_caption(str(self.name))
+        self.__name = name
+        pg.display.set_caption(str(self.__name))
     
     def setIcon(self, icon: str) -> None:
-        self.icon = icon
-        self.img = pg.image.load(self.icon).convert_alpha()
-        pg.display.set_icon(self.img)
+        self.__icon = icon
+        self.__img = pg.image.load(self.__icon).convert_alpha()
+        pg.display.set_icon(self.__img)
 
     def setBg(self, bgColor: tuple | str) -> None:
-        self.bgColor = bgColor
-        self.wn.fill(self.bgColor)
+        self.__bgColor = bgColor
+        self.wn.fill(self.__bgColor)
     
     def setFps(self, fps: int) -> None:
-        self.fps = fps
+        self.__fps = fps
     
     def getFps(self) -> int:
-        return self.clock.get_fps()
+        return self.__clock.get_fps()
 
     def draw(self) -> None:
-        self.wn.fill(self.bgColor)
+        self.wn.fill(self.__bgColor)
 
     def update(self) -> None:
         pg.display.update()
-        if self.fps != None:
-            self.clock.tick(self.fps)
+        if self.__fps != None:
+            self.__clock.tick(self.__fps)
         else:
-            self.clock.tick()
+            self.__clock.tick()
         
         for ev in pg.event.get():
             if ev.type == pg.QUIT:

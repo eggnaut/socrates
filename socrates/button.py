@@ -38,36 +38,36 @@ class _button():
                  pos: tuple | None = (0, 0),
                  action = None
                  ):
-        self.wn = window
-        self.pos = pos
-        self.action = action
-        self.__doAction = self.action
-        self.click = False
-        self.norm = pg.image.load(image).convert_alpha()
-        self.norm = pg.transform.scale(self.norm, (self.norm.get_width() * scale, self.norm.get_height() * scale))
-        self.image = self.norm
-        self.rect = self.image.get_rect(center = self.pos)
+        self.__wn = window
+        self.__pos = pos
+        self.__action = action
+        self.__doAction = self.__action
+        self.__click = False
+        self.__norm = pg.image.load(image).convert_alpha()
+        self.__norm = pg.transform.scale(self.__norm, (self.__norm.get_width() * scale, self.__norm.get_height() * scale))
+        self.__image = self.__norm
+        self.__rect = self.__image.get_rect(center = self.__pos)
     
     def hover(self, scale: float | int | None = 1.25) -> None:
-        mousePos = pg.mouse.get_pos()
+        __mousePos = pg.mouse.get_pos()
 
-        if self.rect.collidepoint(mousePos):
-            new = pg.transform.scale(self.norm, (self.norm.get_width() * scale, self.norm.get_height() * scale))
-            self.image = new
-            self.rect = self.image.get_rect(center = self.pos)
+        if self.__rect.collidepoint(__mousePos):
+            new = pg.transform.scale(self.__norm, (self.__norm.get_width() * scale, self.__norm.get_height() * scale))
+            self.__image = new
+            self.__rect = self.__image.get_rect(center = self.__pos)
         else:
-            self.image = self.norm
-            self.rect = self.image.get_rect(center = self.pos)
+            self.__image = self.__norm
+            self.__rect = self.__image.get_rect(center = self.__pos)
 
     def __doAction(self):
         pass
 
     def draw(self) -> None:
-        self.wn.blit(self.image, self.rect)
+        self.__wn.blit(self.__image, self.__rect)
     
     def update(self):
-        mousePos = pg.mouse.get_pos()
+        __mousePos = pg.mouse.get_pos()
 
-        if pg.mouse.get_pressed()[0] and self.rect.collidepoint(mousePos) and not self.click:
+        if pg.mouse.get_pressed()[0] and self.__rect.collidepoint(__mousePos) and not self.__click:
             self.__doAction()
-            self.click = pg.mouse.get_pressed()[0]
+            self.__click = pg.mouse.get_pressed()[0]

@@ -49,29 +49,29 @@ class _text():
                  pos: tuple | None = (0, 0)
                  ) -> None:
         if font != None:
-            self.font = pg.font.Font(font, fontSize)
+            self.__font = pg.font.Font(font, fontSize)
         else:
-            self.font = pg.font.SysFont('Arial', fontSize, bold, italic)
+            self.__font = pg.font.SysFont('Arial', fontSize, bold, italic)
 
-        self.pos = pos
-        self.norm = self.font.render(content, antialias, color, bgColor)
-        self.content = self.norm
-        self.rect = self.content.get_rect(center = self.pos)
-        self.wn = window
+        self.__pos = pos
+        self.__norm = self.__font.render(content, antialias, color, bgColor)
+        self.__content = self.__norm
+        self.__rect = self.__content.get_rect(center = self.__pos)
+        self.__wn = window
 
     def hover(self, scale: float | int | None = 1.25) -> None:
         mousePos = pg.mouse.get_pos()
 
-        if self.rect.collidepoint(mousePos):
-            new = pg.transform.scale(self.norm, (self.norm.get_width() * scale, self.norm.get_height() * scale))
-            self.content = new
-            self.rect = self.content.get_rect(center = self.pos)
+        if self.__rect.collidepoint(mousePos):
+            new = pg.transform.scale(self.__norm, (self.__norm.get_width() * scale, self.__norm.get_height() * scale))
+            self.__content = new
+            self.__rect = self.__content.get_rect(center = self.__pos)
         else:
-            self.content = self.norm
-            self.rect = self.content.get_rect(center = self.pos)
+            self.__content = self.__norm
+            self.__rect = self.__content.get_rect(center = self.__pos)
 
     def draw(self) -> None:
-        self.wn.blit(self.content, self.rect)
+        self.__wn.blit(self.__content, self.__rect)
     
     def update(self) -> None:
         pass
